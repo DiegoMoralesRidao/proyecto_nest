@@ -4,16 +4,16 @@ import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
 
 /**
- * Controller for handling Pokemon-related requests.
+ * Controlador para manejar las peticiones relacionadas con Pokemon.
  */
 @Controller('pokemon')
 export class PokemonController {
   constructor(private readonly pokemonService: PokemonService) { }
 
   /**
-   * Creates a new Pokemon.
-   * @param createPokemonDto Data for the new Pokemon.
-   * @returns The created Pokemon.
+   * Crea un nuevo Pokemon.
+   * @param createPokemonDto Datos para el nuevo Pokemon.
+   * @returns El Pokemon creado.
    */
   @Post()
   create(@Body() createPokemonDto: CreatePokemonDto) {
@@ -21,11 +21,11 @@ export class PokemonController {
   }
 
   /**
-   * Retrieves all Pokemon, optionally filtered by name, type, and minimum HP.
-   * @param name Optional name filter.
-   * @param type Optional type filter.
-   * @param minHp Optional minimum HP filter.
-   * @returns A list of Pokemon.
+   * Obtiene todos los Pokemon, opcionalmente filtrados por nombre, tipo y HP mínimo.
+   * @param name Filtro opcional por nombre.
+   * @param type Filtro opcional por tipo.
+   * @param minHp Filtro opcional por HP mínimo.
+   * @returns Una lista de Pokemon.
    */
   @Get()
   findAll(
@@ -37,9 +37,9 @@ export class PokemonController {
   }
 
   /**
-   * Retrieves a single Pokemon by its ID.
-   * @param id The ID of the Pokemon.
-   * @returns The Pokemon with the given ID.
+   * Obtiene un solo Pokemon por su ID.
+   * @param id El ID del Pokemon.
+   * @returns El Pokemon con el ID proporcionado.
    */
   @Get(':id')
   findOne(@Param('id') id: string) {
@@ -47,10 +47,10 @@ export class PokemonController {
   }
 
   /**
-   * Updates an existing Pokemon.
-   * @param id The ID of the Pokemon to update.
-   * @param updatePokemonDto The updated data.
-   * @returns The updated Pokemon.
+   * Actualiza un Pokemon existente.
+   * @param id El ID del Pokemon a actualizar.
+   * @param updatePokemonDto Los datos actualizados.
+   * @returns El Pokemon actualizado.
    */
   @Patch(':id')
   update(@Param('id') id: string, @Body() updatePokemonDto: UpdatePokemonDto) {
@@ -58,13 +58,14 @@ export class PokemonController {
   }
 
   /**
-   * Deletes a Pokemon by its ID.
-   * @param id The ID of the Pokemon to delete.
-   * @returns The deleted Pokemon.
+   * Elimina un Pokemon por su ID.
+   * @param id El ID del Pokemon a eliminar.
+   * @returns El Pokemon eliminado.
    */
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.pokemonService.remove(+id);
   }
 }
+
 
