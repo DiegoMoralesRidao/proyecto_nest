@@ -23,7 +23,11 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This is a NestJS project that provides an API for managing a collection of **Movies** and **Pokemon**.
+
+- **Movies**: Allows creating, listing (with filters by title and date), updating, and deleting movies.
+- **Pokemon**: Allows managing Pokemon data, including names, types, and HP, with filtering capabilities.
+
 
 ## Project setup
 
