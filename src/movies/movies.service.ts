@@ -3,9 +3,7 @@ import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 import { Movie } from './entities/movie.entity';
 
-/**
- * Servicio para gestionar los datos de las películas.
- */
+// Servicio para gestionar los datos y lógica de las películas
 @Injectable()
 export class MoviesService {
   private movies: Movie[] = [
@@ -16,24 +14,14 @@ export class MoviesService {
     { id: 5, title: 'The Dark Knight', releaseDate: new Date('2008-07-18') },
   ];
 
-  /**
-   * Crea una nueva película.
-   * @param createMovieDto Datos de la nueva película.
-   * @returns La película creada.
-   */
+  // Crea una nueva película y la añade a la lista
   create(createMovieDto: CreateMovieDto) {
     const newMovie = { id: this.movies.length + 1, ...createMovieDto, releaseDate: new Date(createMovieDto.releaseDate) } as any;
     this.movies.push(newMovie);
     return newMovie;
   }
 
-  /**
-   * Obtiene las películas, opcionalmente filtradas por título y rango de fechas.
-   * @param title Filtro opcional por título.
-   * @param from Filtro opcional de fecha de inicio.
-   * @param to Filtro opcional de fecha de fin.
-   * @returns Una lista filtrada de películas.
-   */
+  // Devuelve las películas filtradas por título o fecha si se requiere
   findAll(title?: string, from?: string, to?: string) {
     let filtered = [...this.movies];
 
@@ -54,21 +42,12 @@ export class MoviesService {
     return filtered;
   }
 
-  /**
-   * Busca una sola película por su ID.
-   * @param id El ID de la película.
-   * @returns La película encontrada, o undefined.
-   */
+  // Busca una película por su identificador único
   findOne(id: number) {
     return this.movies.find(m => m.id === id);
   }
 
-  /**
-   * Actualiza los datos de una película existente.
-   * @param id El ID de la película a actualizar.
-   * @param updateMovieDto Los datos actualizados.
-   * @returns La película actualizada, o null si no se encuentra.
-   */
+  // Modifica los datos de una película por su ID
   update(id: number, updateMovieDto: UpdateMovieDto) {
     const idx = this.movies.findIndex(m => m.id === id);
     if (idx !== -1) {
@@ -78,11 +57,7 @@ export class MoviesService {
     return null;
   }
 
-  /**
-   * Elimina una película por su ID.
-   * @param id El ID de la película a eliminar.
-   * @returns La película eliminada, o null si no se encuentra.
-   */
+  // Quita una película de la lista permanentemente
   remove(id: number) {
     const idx = this.movies.findIndex(m => m.id === id);
     if (idx !== -1) {
@@ -92,5 +67,6 @@ export class MoviesService {
     return null;
   }
 }
+
 
 
